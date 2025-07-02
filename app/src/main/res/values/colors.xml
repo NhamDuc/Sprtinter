@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Colors -->
+    <color name="white">#FCFDFE</color>
+    <color name="background">#F7F7F7</color>
+    <color name="line">#EBEBEB</color>
+    <color name="placeholder">#DCDCE9</color>
+    <color name="disable">#A7ABC3</color>
+
+    <!-- Text Colors -->
+    <color name="text_secondary">#434657</color>
+    <color name="text_primary">#181818</color>
+
+    <!-- CSK Yellow Shades -->
+    <color name="csk_50">#FFFBE3</color>
+    <color name="csk_100">#FEF6C3</color>
+    <color name="csk_200">#FDF09D</color>
+    <color name="csk_300">#FCE94F</color>
+    <color name="csk_400">#FBE528</color>
+    <color name="csk_500">#F8D201</color>
+    <color name="csk_600">#D1B900</color>
+    <color name="csk_700">#A48D00</color>
+    <color name="csk_800">#7B6C00</color>
+    <color name="csk_900">#5E5200</color>
+    <color name="csk_950">#292400</color>
+</resources>
