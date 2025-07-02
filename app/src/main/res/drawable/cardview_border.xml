@@ -8,5 +8,5 @@
         android:startColor="#FF6F00"
         android:endColor="#FFD600" />
 
-    <corners android:radius="16dp" /> <!-- Match your card corner radius -->
+    <corners android:radius="@dimen/_16sdp" />
 </shape>

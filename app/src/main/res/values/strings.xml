@@ -4,4 +4,18 @@
     <string name="customer">Customize</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="shimeji">SHIMEJI</string>
+    <string name="home">home</string>
+    <string name="settings_button">settings_button</string>
+    <string name="shimeji_project">Shimeji Project</string>
+    <string name="turn_on_shimeji">Turn on shimeji_</string>
+    <string name="shimeji_on_screen">Shimeji on screen: ----------</string>
+    <string name="adjust_shimeji">Adjust Shimeji</string>
+    <string-array name="random">
+        <item> One at random</item>
+        <item> Two at random</item>
+        <item> Three at random</item>
+        <item> Four at random</item>
+        <item> Five at random</item>
+        <item> Six at random</item>
+    </string-array>
 </resources>
