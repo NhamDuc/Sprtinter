@@ -2,8 +2,6 @@
 <resources>
     <!-- Base Colors -->
     <color name="white">#FCFDFE</color>
-    <color name="yellow">#FFFBEF</color>
-    <color name="black">#3A3A3A</color>
     <color name="background">#F7F7F7</color>
     <color name="line">#EBEBEB</color>
     <color name="placeholder">#DCDCE9</color>

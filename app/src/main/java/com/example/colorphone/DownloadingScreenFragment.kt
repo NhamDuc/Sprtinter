@@ -34,7 +34,7 @@ class DownloadingScreenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_downloading_screen, container, false)
+        return inflater.inflate(R.layout.fragment_dowloading_screen, container, false)
     }
 
     companion object {

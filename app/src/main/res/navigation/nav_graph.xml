@@ -3,88 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeScreenFragment">
+    app:startDestination="@id/customerFragment">
 
 
     <fragment
-        android:id="@+id/downloadingScreenFragment"
+        android:id="@+id/splashFragment"
+        android:name="com.example.colorphone.ui.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" />
+    <fragment
+        android:id="@+id/customerFragment"
+        android:name="com.example.colorphone.ui.customer.controller.CustomerFragment"
+        android:label="fragment_customer"
+        tools:layout="@layout/fragment_customer" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.colorphone.ui.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/dowloadingScreenFragment"
         android:name="com.example.colorphone.DownloadingScreenFragment"
         android:label="fragment_dowloading_screen"
-        tools:layout="@layout/fragment_downloading_screen" >
-        <action
-            android:id="@+id/action_dowloadingScreenFragment_to_homeScreenFragment"
-            app:destination="@id/homeScreenFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_dowloading_screen" />
     <fragment
         android:id="@+id/homeScreenFragment"
         android:name="com.example.colorphone.HomeScreenFragment"
         android:label="fragment_home_screen"
-        tools:layout="@layout/fragment_home_screen" >
-        <action
-            android:id="@+id/action_homeScreenFragment_to_adjustScreenFragment"
-            app:destination="@id/adjustScreenFragment" />
-        <action
-            android:id="@+id/action_homeScreenFragment_to_settingsScreenFragment"
-            app:destination="@id/settingsScreenFragment" />
-        <action
-            android:id="@+id/action_homeScreenFragment_to_allShimejisFragment"
-            app:destination="@id/allShimejisFragment" />
-    </fragment>
-    <navigation android:id="@+id/navigation"
-        app:startDestination="@id/customerFragment">
-        <fragment
-            android:id="@+id/customerFragment"
-            android:name="com.example.colorphone.ui.customer.controller.CustomerFragment"
-            android:label="fragment_customer"
-            tools:layout="@layout/fragment_customer" />
-        <fragment
-            android:id="@+id/splashFragment"
-            android:name="com.example.colorphone.ui.SplashFragment"
-            android:label="fragment_splash"
-            tools:layout="@layout/fragment_splash" />
-        <activity
-            android:id="@+id/mainActivity"
-            android:name="com.example.colorphone.ui.MainActivity"
-            android:label="activity_main"
-            tools:layout="@layout/activity_main" />
-    </navigation>
-    <fragment
-        android:id="@+id/adjustScreenFragment"
-        android:name="com.example.colorphone.AdjustScreenFragment"
-        android:label="fragment_adjust_screen"
-        tools:layout="@layout/fragment_adjust_screen" >
-        <action
-            android:id="@+id/action_adjustScreenFragment_to_homeScreenFragment"
-            app:destination="@id/homeScreenFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/settingsScreenFragment"
-        android:name="com.example.colorphone.SettingsScreenFragment"
-        android:label="fragment_settings_screen"
-        tools:layout="@layout/fragment_settings_screen" >
-        <action
-            android:id="@+id/action_settingsScreenFragment_to_homeScreenFragment"
-            app:destination="@id/homeScreenFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/allShimejisFragment"
-        android:name="com.example.colorphone.AllShimejisFragment"
-        android:label="fragment_all_shimejis"
-        tools:layout="@layout/fragment_all_shimejis" >
-        <action
-            android:id="@+id/action_allShimejisFragment_to_homeScreenFragment"
-            app:destination="@id/homeScreenFragment" />
-        <action
-            android:id="@+id/action_allShimejisFragment_to_detailsShimejiFragment"
-            app:destination="@id/detailsShimejiFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailsShimejiFragment"
-        android:name="com.example.colorphone.DetailsShimejiFragment"
-        android:label="fragment_details_shimeji"
-        tools:layout="@layout/fragment_details_shimeji" >
-        <action
-            android:id="@+id/action_detailsShimejiFragment_to_allShimejisFragment"
-            app:destination="@id/allShimejisFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_home_screen" />
 </navigation>
