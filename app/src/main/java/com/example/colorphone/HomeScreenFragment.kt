@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import com.example.colorphone.databinding.FragmentHomeScreenBinding
 import com.example.colorphone.util.custom.CustomDropDownAdapter
 
 /**
@@ -16,12 +17,16 @@ import com.example.colorphone.util.custom.CustomDropDownAdapter
  */
 class HomeScreenFragment : Fragment() {
 
+    private var _binding: FragmentHomeScreenBinding ?= null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_home_screen, container, false)
+        _binding = FragmentHomeScreenBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         return view
     }
@@ -35,5 +40,10 @@ class HomeScreenFragment : Fragment() {
         val arrayAdapter = CustomDropDownAdapter(requireContext(), R.layout.dropdown_random_item, randomItem, autoCompleteTextView)
 
         autoCompleteTextView.setAdapter(arrayAdapter)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
