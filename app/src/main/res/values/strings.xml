@@ -9,6 +9,7 @@
     <string name="shimeji_project">Shimeji Project</string>
     <string name="turn_on_shimeji">Turn on shimeji_</string>
     <string name="shimeji_on_screen">Shimeji on screen: ------------</string>
+    <string name="adjust_shimeji">Adjust Shimeji</string>
     <string-array name="random">
         <item> One at random</item>
         <item> Two at random</item>
