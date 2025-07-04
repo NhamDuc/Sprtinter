@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFFFFF" /> <!-- Use your unselected item color (white) -->
+    <corners android:radius="@dimen/_16sdp" /> <!-- Apply rounded corners to the item background -->
+</shape>

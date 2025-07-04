@@ -4,8 +4,10 @@
         <inset android:inset="@dimen/_1sdp">
             <shape android:shape="oval">
                 <solid android:color="@color/csk_500" />
-                <size android:width="@dimen/_20sdp"
-                    android:height="@dimen/_20sdp" />
+                <stroke android:width="@dimen/_2sdp"
+                    android:color="#FFFFFF" />
+                <size android:width="@dimen/_16sdp"
+                    android:height="@dimen/_16sdp" />
             </shape>
         </inset>
     </item>
@@ -15,6 +17,8 @@
                 <solid android:color="#FFFFFF" />
                 <size android:width="@dimen/_20sdp"
                     android:height="@dimen/_20sdp" />
+                <stroke android:width="@dimen/_2sdp"
+                    android:color="@color/csk_900" />
             </shape>
         </inset>
     </item>

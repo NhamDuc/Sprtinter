@@ -36,6 +36,4 @@ class HomeScreenFragment : Fragment() {
 
         autoCompleteTextView.setAdapter(arrayAdapter)
     }
-
-
 }
