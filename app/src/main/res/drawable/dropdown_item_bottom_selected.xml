@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/csk_500" /> <!-- Use your selected item color -->
+    <corners android:bottomLeftRadius="@dimen/_16sdp"
+        android:bottomRightRadius="@dimen/_16sdp"/> <!-- Apply rounded corners to the item background -->
+</shape>
