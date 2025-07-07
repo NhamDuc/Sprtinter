@@ -6,14 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AutoCompleteTextView
+import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.colorphone.databinding.FragmentHomeScreenBinding
+import com.example.colorphone.model.ShimejiItem
 import com.example.colorphone.util.custom.CustomDropDownAdapter
+import com.example.colorphone.util.custom.ShimejiRecyclerViewAdapter
 
 
 class HomeScreenFragment : Fragment() {
 
     private var _binding: FragmentHomeScreenBinding ?= null
     private val binding get() = _binding!!
+
+    private lateinit var shimejiGridAdapter: ShimejiRecyclerViewAdapter
+    private val shimejiList = mutableListOf<ShimejiItem>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,8 +40,40 @@ class HomeScreenFragment : Fragment() {
 
         val randomItem = resources.getStringArray(R.array.random).toList()
         val arrayAdapter = CustomDropDownAdapter(requireContext(), R.layout.dropdown_random_item, randomItem, autoCompleteTextView)
-
         autoCompleteTextView.setAdapter(arrayAdapter)
+
+        setupShimejiRecyclerView()
+        initializeGrid()
+    }
+
+    private fun setupShimejiRecyclerView() {
+        shimejiGridAdapter = ShimejiRecyclerViewAdapter(
+            shimejiItems = shimejiList,
+            onItemClick = {},
+            onDeleteClick = { shimejiItem ->
+                Toast.makeText(
+                    requireContext(),
+                    "A Shimeji has made an ultimate sacrifice",
+                    Toast.LENGTH_LONG
+                ).show()
+                shimejiGridAdapter.removeItem(shimejiItem)
+            }
+        )
+
+        binding.gridRecyclerView.apply {
+            layoutManager = GridLayoutManager(requireContext(), 3)
+            adapter = shimejiGridAdapter
+
+            isNestedScrollingEnabled = false
+            overScrollMode = View.OVER_SCROLL_NEVER
+        }
+    }
+
+    private fun initializeGrid() {
+        for (i in 0..5) {
+            shimejiList.add(ShimejiItem(i, false, "", null))
+        }
+        shimejiList[1] = ShimejiItem(1, true, "Tanjiro", R.drawable.tanjiro)
     }
 
     override fun onDestroyView() {
