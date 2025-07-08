@@ -9,7 +9,7 @@
     tools:context=".HomeScreenFragment">
 
     <TextView
-        android:id="@+id/tvHomeTitle"
+        android:id="@+id/tvAdjustTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
@@ -35,9 +35,9 @@
         android:contentDescription="@string/settings_button"
         android:scaleType="centerInside"
         android:src="@drawable/settings"
-        app:layout_constraintBottom_toBottomOf="@+id/tvHomeTitle"
+        app:layout_constraintBottom_toBottomOf="@+id/tvAdjustTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvHomeTitle" />
+        app:layout_constraintTop_toTopOf="@+id/tvAdjustTitle" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
@@ -49,8 +49,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/button"
         app:layout_constraintEnd_toEndOf="@+id/settingsButton"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/tvHomeTitle"
-        app:layout_constraintTop_toBottomOf="@id/tvHomeTitle"
+        app:layout_constraintStart_toStartOf="@+id/tvAdjustTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvAdjustTitle"
         app:layout_constraintVertical_bias="0.0"
         app:strokeColor="@color/black"
         app:strokeWidth="@dimen/_1sdp" />
@@ -60,13 +60,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/gradient_background"
-        app:layout_constraintBottom_toBottomOf="@id/tvProject"
+        app:layout_constraintBottom_toBottomOf="@id/tvShimejiProject"
         app:layout_constraintEnd_toEndOf="@+id/materialCardView"
         app:layout_constraintStart_toStartOf="@+id/materialCardView"
         app:layout_constraintTop_toTopOf="@id/materialCardView" />
 
     <TextView
-        android:id="@+id/tvProject"
+        android:id="@+id/tvShimejiProject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
@@ -133,9 +133,9 @@
         android:paddingStart="@dimen/_8sdp"
         android:minWidth="0dp"
         android:minHeight="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvProject"
+        app:layout_constraintBottom_toBottomOf="@+id/tvShimejiProject"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvProject" />
+        app:layout_constraintTop_toTopOf="@+id/tvShimejiProject" />
 
     <TextView
         android:id="@+id/turnOnText"
@@ -147,8 +147,8 @@
         android:textAllCaps="true"
         android:textFontWeight="400"
         android:textSize="@dimen/_14ssp"
-        app:layout_constraintStart_toStartOf="@+id/tvProject"
-        app:layout_constraintTop_toBottomOf="@+id/tvProject" />
+        app:layout_constraintStart_toStartOf="@+id/tvShimejiProject"
+        app:layout_constraintTop_toBottomOf="@+id/tvShimejiProject" />
 
     <TextView
         android:id="@+id/shimejiOnScreenText"

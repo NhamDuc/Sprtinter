@@ -6,6 +6,8 @@
     <color name="line">#EBEBEB</color>
     <color name="placeholder">#DCDCE9</color>
     <color name="disable">#A7ABC3</color>
+    <color name="black">#3A3A3A</color>
+    <color name="yellow">#FDF09D</color>
 
     <!-- Text Colors -->
     <color name="text_secondary">#434657</color>
