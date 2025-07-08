@@ -47,9 +47,9 @@
         app:cardBackgroundColor="@color/csk_200"
         app:cardCornerRadius="@dimen/_16sdp"
         app:layout_constraintBottom_toBottomOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="@+id/settingsButton"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/tvAdjustTitle"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvAdjustTitle"
         app:layout_constraintVertical_bias="0.0"
         app:strokeColor="@color/black"
@@ -75,10 +75,9 @@
         android:textAllCaps="true"
         android:textColor="#3A3A3A"
         android:textFontWeight="500"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
         android:paddingTop="@dimen/_2sdp"
         android:paddingBottom="@dimen/_2sdp"
-        android:includeFontPadding="false"
         app:layout_constraintStart_toStartOf="@+id/materialCardView"
         app:layout_constraintTop_toTopOf="@id/materialCardView" />
 
@@ -146,7 +145,7 @@
         android:text="@string/turn_on_shimeji"
         android:textAllCaps="true"
         android:textFontWeight="400"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintStart_toStartOf="@+id/tvShimejiProject"
         app:layout_constraintTop_toBottomOf="@+id/tvShimejiProject" />
 
@@ -161,7 +160,7 @@
         android:text="@string/shimeji_on_screen"
         android:textAllCaps="true"
         android:textFontWeight="400"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintEnd_toEndOf="@+id/checkButton"
         app:layout_constraintStart_toStartOf="@+id/turnOnText"
         app:layout_constraintTop_toBottomOf="@+id/turnOnText" />
@@ -204,16 +203,17 @@
         <AutoCompleteTextView
             android:id="@+id/autoCompleteTextView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="@null"
             android:fontFamily="@font/sf_compact_rounded_regular"
             android:includeFontPadding="false"
+            android:minHeight="0dp"
             android:inputType="none"
             android:popupBackground="@drawable/dropdown_box"
             android:text="One at random"
             android:textFontWeight="400"
-            android:textSize="@dimen/_12ssp" />
+            android:textSize="@dimen/_10ssp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -223,7 +223,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
         android:text="@string/adjust_shimeji"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
         android:textColor="@color/black"
         android:fontFamily="@font/sf_compact_rounded_regular"
         android:textFontWeight="400"
@@ -251,7 +251,7 @@
         android:text="View all Shimeji"
         android:textColor="@color/black"
         android:textFontWeight="400"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
         app:cornerRadius="@dimen/_12sdp"
         app:icon="@drawable/vision_vector"
         app:iconGravity="textStart"

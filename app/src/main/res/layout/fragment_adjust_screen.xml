@@ -10,11 +10,11 @@
 
     <ImageButton
         android:id="@+id/backBtn"
-        android:layout_width="@dimen/_24sdp"
-        android:layout_height="@dimen/_24sdp"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
         android:background="@null"
         android:contentDescription="back button"
-        android:scaleType="centerInside"
+        android:scaleType="fitCenter"
         android:src="@drawable/back"
         app:layout_constraintBottom_toBottomOf="@+id/tvAdjustTitle"
         app:layout_constraintEnd_toStartOf="@+id/tvAdjustTitle"
@@ -26,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_12sdp"
         android:fontFamily="@font/bungee_regular"
         android:includeFontPadding="false"
         android:shadowColor="#312E2F"
@@ -43,10 +44,11 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/tvAdjustTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/durationSeekbar"
         android:layout_marginTop="@dimen/_16sdp"
         app:cardBackgroundColor="@color/csk_200"
         app:cardCornerRadius="@dimen/_16sdp"
@@ -69,14 +71,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_12sdp"
         android:fontFamily="@font/sf_compact_rounded_medium"
-        android:includeFontPadding="false"
         android:paddingTop="@dimen/_2sdp"
         android:paddingBottom="@dimen/_2sdp"
         android:text="@string/adjust_shimeji"
         android:textAllCaps="true"
         android:textColor="#3A3A3A"
         android:textFontWeight="500"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_10ssp"
         app:layout_constraintStart_toStartOf="@+id/materialCardView"
         app:layout_constraintTop_toTopOf="@id/materialCardView" />
 
@@ -139,12 +140,13 @@
         android:id="@+id/tvSpeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:fontFamily="@font/sf_mono_regular"
         android:text="speed:"
+        android:textColor="@color/black"
         android:textAllCaps="true"
         android:textFontWeight="400"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_10ssp"
         app:layout_constraintStart_toStartOf="@+id/tvAdjustShimeji"
         app:layout_constraintTop_toBottomOf="@+id/tvAdjustShimeji" />
 
@@ -152,56 +154,84 @@
         android:id="@+id/speedSeekBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_2sdp"
+        android:layout_marginEnd="@dimen/_2sdp"
         android:max="100"
         android:progressDrawable="@drawable/seeekbar_progress"
         android:splitTrack="false"
         android:thumb="@drawable/seekbar_thumb"
-        app:layout_constraintEnd_toEndOf="@+id/materialCardView"
-        app:layout_constraintStart_toStartOf="@id/materialCardView"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/materialCardView"
         app:layout_constraintTop_toBottomOf="@id/tvSpeed" />
 
     <TextView
         android:id="@+id/tvShimejiSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:fontFamily="@font/sf_mono_regular"
         android:text="Shimeji Size:"
         android:textAllCaps="true"
         android:textFontWeight="400"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_10ssp"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/speedSeekBar"
         app:layout_constraintStart_toStartOf="@id/tvSpeed"/>
 
     <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/sizeSeekbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:max="100"
         android:progressDrawable="@drawable/seeekbar_progress"
         android:splitTrack="false"
-        android:thumb="@drawable/seekbar_thumb"/>
+        android:thumb="@drawable/seekbar_thumb"
+        app:layout_constraintEnd_toEndOf="@+id/speedSeekBar"
+        app:layout_constraintStart_toStartOf="@+id/speedSeekBar"
+        app:layout_constraintTop_toBottomOf="@+id/tvShimejiSize" />
 
     <TextView
         android:id="@+id/tvTimeBtwChanges"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
         android:fontFamily="@font/sf_mono_regular"
-        android:text="Time between changes"
+        android:text="Time between changes:"
         android:textAllCaps="true"
         android:textFontWeight="400"
-        android:textSize="@dimen/_14ssp"
-        tools:layout_editor_absoluteX="21dp"
-        tools:layout_editor_absoluteY="21dp" />
+        android:textSize="@dimen/_10ssp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/tvShimejiSize"
+        app:layout_constraintTop_toBottomOf="@+id/sizeSeekbar" />
 
     <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/durationSeekbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
         android:max="100"
         android:progressDrawable="@drawable/seeekbar_progress"
         android:splitTrack="false"
-        android:thumb="@drawable/seekbar_thumb"/>
+        android:thumb="@drawable/seekbar_thumb"
+        app:layout_constraintEnd_toEndOf="@+id/speedSeekBar"
+        app:layout_constraintStart_toStartOf="@+id/speedSeekBar"
+        app:layout_constraintTop_toBottomOf="@+id/tvTimeBtwChanges" />
+
+    <TextView
+        android:id="@+id/tvDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_14sdp"
+        android:text="5.0 minutes"
+        android:textSize="@dimen/_10ssp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/sf_mono_regular"
+        android:textFontWeight="400"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTimeBtwChanges"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/tvTimeBtwChanges" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
