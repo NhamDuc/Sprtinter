@@ -1,14 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/csk_500"
+    android:padding="@dimen/_8sdp"
     tools:context=".DetailsShimejiFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageButton
+        android:id="@+id/btnBack"
+        app:layout_constraintBottom_toBottomOf="@+id/imgvDetails"
+        app:layout_constraintEnd_toStartOf="@+id/imgvDetails"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgvDetails"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:background="@null"
+        android:contentDescription="back button"
+        android:scaleType="fitCenter"
+        android:src="@drawable/back"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="10dp" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/imgvDetails"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnBack"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/details_text"
+        tools:layout_editor_absoluteX="10dp"
+        tools:layout_editor_absoluteY="10dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardViewDetails"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:cardBackgroundColor="@color/csk_200"
+        app:cardCornerRadius="@dimen/_16sdp"
+        app:layout_constraintBottom_toBottomOf="@id/imgvShimeji"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgvDetails"
+        app:layout_constraintVertical_bias="0.058"
+        app:strokeColor="@color/black"
+        app:strokeWidth="@dimen/_1sdp" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/gradient_background"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDetails"
+        app:layout_constraintEnd_toEndOf="@+id/cardViewDetails"
+        app:layout_constraintStart_toStartOf="@+id/cardViewDetails"
+        app:layout_constraintTop_toTopOf="@+id/cardViewDetails" />
+
+    <TextView
+        android:id="@+id/tvDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:fontFamily="@font/sf_compact_rounded_medium"
+        android:paddingTop="@dimen/_2sdp"
+        android:paddingBottom="@dimen/_2sdp"
+        android:text="Details"
+        android:textAllCaps="true"
+        android:textColor="#3A3A3A"
+        android:textFontWeight="500"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toStartOf="@+id/cardViewDetails"
+        app:layout_constraintTop_toTopOf="@+id/cardViewDetails" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/squareButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:backgroundTint="@color/black"
+        android:background="@drawable/image_button_border"
+        app:icon="@drawable/square_vector"
+        app:iconSize="@dimen/_14sdp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        app:iconPadding="0dp"
+        android:padding="0dp"
+        android:paddingStart="@dimen/_8sdp"
+        android:paddingEnd="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/xButton"
+        app:layout_constraintEnd_toStartOf="@+id/lineButton"
+        app:layout_constraintTop_toTopOf="@+id/xButton" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/lineButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:includeFontPadding="false"
+        android:backgroundTint="@android:color/transparent"
+        android:minWidth="0dp"
+        android:padding="0dp"
+        android:paddingStart="@dimen/_8sdp"
+        android:paddingEnd="@dimen/_8sdp"
+        android:paddingBottom="0dp"
+        android:text="-"
+        android:textFontWeight="400"
+        android:textSize="@dimen/_20ssp"
+        app:layout_constraintBottom_toBottomOf="@+id/xButton"
+        app:layout_constraintEnd_toStartOf="@+id/xButton"
+        app:layout_constraintTop_toTopOf="@+id/xButton"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/xButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/image_button_top_left_corner"
+        app:backgroundTint="@android:color/black"
+        app:icon="@drawable/x_vector"
+        app:iconSize="@dimen/_12sdp"
+        app:iconPadding="0dp"
+        android:padding="0dp"
+        android:paddingEnd="@dimen/_8sdp"
+        android:paddingStart="@dimen/_8sdp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDetails"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvDetails" />
+
+    <ImageView
+        android:id="@+id/imgvShimeji"
+        android:layout_width="@dimen/_128sdp"
+        android:layout_height="@dimen/_128sdp"
+        android:layout_marginVertical="@dimen/_24sdp"
+        android:src="@drawable/tanjiro"
+        app:layout_constraintBottom_toBottomOf="@id/cardViewDetails"
+        app:layout_constraintEnd_toStartOf="@+id/btnOptions"
+        app:layout_constraintStart_toStartOf="@id/cardViewDetails"
+        app:layout_constraintTop_toBottomOf="@id/view" />
+
+    <TextView
+        android:padding=""
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee_regular"
+        android:includeFontPadding="false"
+        android:text="Tanjiro"
+        android:textColor="@color/black"
+        android:textFontWeight="400"
+        android:textSize="@dimen/_18ssp"
+        app:layout_constraintBottom_toTopOf="@+id/btnOptions"
+        app:layout_constraintEnd_toEndOf="@+id/btnOptions"
+        app:layout_constraintStart_toStartOf="@+id/btnOptions"
+        app:layout_constraintTop_toTopOf="@+id/imgvShimeji" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:padding="0dp"
+        android:fontFamily="@font/sf_compact_rounded_medium"
+        android:text="Select"
+        android:textColor="@color/black"
+        android:textFontWeight="500"
+        android:textSize="@dimen/_12ssp"
+        app:cornerRadius="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="@id/imgvShimeji"
+        app:layout_constraintEnd_toEndOf="@+id/cardViewDetails"
+        app:layout_constraintStart_toEndOf="@id/imgvShimeji"
+        app:layout_constraintTop_toTopOf="@+id/imgvShimeji" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

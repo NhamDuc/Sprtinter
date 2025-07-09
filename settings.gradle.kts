@@ -13,7 +13,6 @@ dependencyResolutionManagement {
         mavenCentral()
         maven("https://jitpack.io")
     }
-
 }
 
 rootProject.name = "ColorPhone"

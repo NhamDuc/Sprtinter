@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.colorphone.databinding.FragmentHomeScreenBinding
 import com.example.colorphone.model.ShimejiItem
+import com.example.colorphone.model.ShimejiState
 import com.example.colorphone.util.custom.CustomDropDownAdapter
 import com.example.colorphone.util.custom.ShimejiRecyclerViewAdapter
 
@@ -42,14 +43,17 @@ class HomeScreenFragment : Fragment() {
         val arrayAdapter = CustomDropDownAdapter(requireContext(), R.layout.dropdown_random_item, randomItem, autoCompleteTextView)
         autoCompleteTextView.setAdapter(arrayAdapter)
 
-        setupShimejiRecyclerView()
+        setupRecyclerView()
+        // TODO: Fake data
         initializeGrid()
     }
 
-    private fun setupShimejiRecyclerView() {
+    private fun setupRecyclerView() {
         shimejiGridAdapter = ShimejiRecyclerViewAdapter(
-            shimejiItems = shimejiList,
-            onItemClick = {},
+            items = shimejiList,
+            showBtnOptions = false,
+            onClickToDetails = { },
+            onClickToAllShimejis = { },
             onDeleteClick = { shimejiItem ->
                 Toast.makeText(
                     requireContext(),
@@ -57,7 +61,8 @@ class HomeScreenFragment : Fragment() {
                     Toast.LENGTH_LONG
                 ).show()
                 shimejiGridAdapter.removeItem(shimejiItem)
-            }
+            },
+            onDownloadClick = { },
         )
 
         binding.gridRecyclerView.apply {
@@ -71,9 +76,9 @@ class HomeScreenFragment : Fragment() {
 
     private fun initializeGrid() {
         for (i in 0..5) {
-            shimejiList.add(ShimejiItem(i, false, "", null))
+            shimejiList.add(ShimejiItem(i, ShimejiState.IsDownloaded(false), "", null))
         }
-        shimejiList[1] = ShimejiItem(1, true, "Tanjiro", R.drawable.tanjiro)
+        shimejiList[1] = ShimejiItem(1, ShimejiState.IsDownloaded(true), "Tanjiro", R.drawable.tanjiro)
     }
 
     override fun onDestroyView() {

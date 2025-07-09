@@ -5,55 +5,66 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.colorphone.databinding.FragmentAllShimejisBinding
+import com.example.colorphone.model.ShimejiItem
+import com.example.colorphone.model.ShimejiState
+import com.example.colorphone.util.custom.ShimejiRecyclerViewAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AllShimejisFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AllShimejisFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
+    private var _binding: FragmentAllShimejisBinding ?= null
+    private val binding get() = _binding!!
+
+    private lateinit var shimejiGridAdapter: ShimejiRecyclerViewAdapter
+    private val shimejiList = mutableListOf<ShimejiItem>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_shimejis, container, false)
+        _binding = FragmentAllShimejisBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AllShimejisFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AllShimejisFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupRecylerView()
+        // TODO: Fake data
+        initializeGrid()
+    }
+
+    private fun setupRecylerView() {
+        shimejiGridAdapter = ShimejiRecyclerViewAdapter(
+            items = shimejiList,
+            showBtnOptions = true,
+            onClickToDetails = { },
+            onClickToAllShimejis = { },
+            onDeleteClick = { },
+            onDownloadClick = { },
+        )
+
+        binding.recyclerView2.apply {
+            layoutManager = GridLayoutManager(requireContext(), 3)
+            adapter = shimejiGridAdapter
+        }
+    }
+
+    private fun initializeGrid() {
+        for (i in 0..30) {
+            shimejiList.add(ShimejiItem(i, ShimejiState.IsNotDownloaded, "Vegeta", R.drawable.vegeta))
+        }
+        shimejiList[1] = ShimejiItem(1, ShimejiState.IsDownloaded(true), "Tanjiro", R.drawable.tanjiro)
+        shimejiList[2] = ShimejiItem(2, ShimejiState.IsNotDownloaded, "Doggo", R.drawable.doggo)
+        shimejiList[3] = ShimejiItem(3, ShimejiState.IsDownloaded(false), "Vegeta", R.drawable.vegeta)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

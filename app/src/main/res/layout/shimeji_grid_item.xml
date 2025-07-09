@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/shimejiItemCardView"
     android:layout_margin="@dimen/_2sdp"
     android:layout_width="match_parent"
@@ -39,7 +40,7 @@
             android:layout_height="@dimen/_6sdp"
             android:background="@drawable/dot_vector"
             android:elevation="@dimen/_4sdp"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,7 +65,7 @@
             android:text="Select Shimeji"
             android:textColor="#3A3A3A"
             android:textFontWeight="500"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:iconPadding="@dimen/_4sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,9 +85,10 @@
             android:textFontWeight="400"
             android:textSize="@dimen/_12ssp"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/selectedStateImage"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btnOptions"/>
 
         <ImageView
             android:id="@+id/selectedStateImage"
@@ -98,8 +100,10 @@
             android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@id/selectedStateText"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageButton
             android:id="@+id/selectedStateDeleteBtn"
@@ -111,6 +115,27 @@
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:fontFamily="@font/sf_compact_rounded_medium"
+            android:includeFontPadding="true"
+            android:padding="0dp"
+            android:minHeight="0dp"
+            android:text="Select"
+            android:visibility="gone"
+            android:textColor="@color/black"
+            android:textFontWeight="500"
+            android:textSize="@dimen/_10ssp"
+            app:cornerRadius="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/dotBottomRight"
+            app:layout_constraintStart_toEndOf="@id/dotBottomLeft"
+            app:layout_constraintTop_toBottomOf="@id/selectedStateText" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
