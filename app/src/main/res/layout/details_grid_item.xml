@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/shimejiDetailsCardView"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_128sdp"
+    android:layout_margin="@dimen/_2sdp"
+    app:cardBackgroundColor="@color/csk_200"
+    app:cardCornerRadius="@dimen/_8sdp"
+    app:strokeColor="#FFFFFF"
+    app:strokeWidth="@dimen/_1sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_4sdp">
+
+        <View
+            android:id="@+id/dotTopLeft"
+            android:layout_width="@dimen/_6sdp"
+            android:layout_height="@dimen/_6sdp"
+            android:background="@drawable/dot_vector"
+            android:elevation="@dimen/_4sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/dotBottomLeft"
+            android:layout_width="@dimen/_6sdp"
+            android:layout_height="@dimen/_6sdp"
+            android:background="@drawable/dot_vector"
+            android:elevation="@dimen/_4sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:id="@+id/dotTopRight"
+            android:layout_width="@dimen/_6sdp"
+            android:layout_height="@dimen/_6sdp"
+            android:background="@drawable/dot_vector"
+            android:elevation="@dimen/_4sdp"
+            android:visibility="gone"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/dotBottomRight"
+            android:layout_width="@dimen/_6sdp"
+            android:layout_height="@dimen/_6sdp"
+            android:background="@drawable/dot_vector"
+            android:elevation="@dimen/_4sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imgbtnAction"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:backgroundTint="@android:color/transparent"
+            android:contentDescription="select detail"
+            android:scaleType="fitCenter"
+            android:src="@drawable/tanjiro"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@id/tvAction"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tvAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/bungee_regular"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="Action"
+            android:textAlignment="center"
+            android:textFontWeight="400"
+            android:textSize="@dimen/_12ssp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -5,55 +5,58 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.colorphone.databinding.FragmentDetailsShimejiBinding
+import com.example.colorphone.databinding.FragmentHomeScreenBinding
+import com.example.colorphone.model.ShimejiActions
+import com.example.colorphone.model.ShimejiDetails
+import com.example.colorphone.model.ShimejiItem
+import com.example.colorphone.model.ShimejiState
+import com.example.colorphone.util.custom.DetailsRecyclerViewAdapter
+import kotlin.random.Random
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailsShimejiFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DetailsShimejiFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentDetailsShimejiBinding ?= null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var detailsGridAdapter: DetailsRecyclerViewAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_details_shimeji, container, false)
+        _binding = FragmentDetailsShimejiBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailsShimejiFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetailsShimejiFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        detailsGridAdapter = ShimejiItem(
+            1,
+            ShimejiState.IsDownloaded(true, ShimejiDetails(ShimejiActions.entries)),
+            "tanjiro",
+            R.drawable.tanjiro
+        ).run {
+            val downloadedState = this.state as ShimejiState.IsDownloaded
+            val actionsList = downloadedState.details.shimejiActions
+            return@run DetailsRecyclerViewAdapter(
+                items = actionsList,
+                onShimejiActionClick = {}
+            )
+        }
+
+
+        binding.detailsRecyclerView.apply {
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            adapter = detailsGridAdapter
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

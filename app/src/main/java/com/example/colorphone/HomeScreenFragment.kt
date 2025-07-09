@@ -9,6 +9,8 @@ import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.colorphone.databinding.FragmentHomeScreenBinding
+import com.example.colorphone.model.ShimejiActions
+import com.example.colorphone.model.ShimejiDetails
 import com.example.colorphone.model.ShimejiItem
 import com.example.colorphone.model.ShimejiState
 import com.example.colorphone.util.custom.CustomDropDownAdapter
@@ -52,8 +54,8 @@ class HomeScreenFragment : Fragment() {
         shimejiGridAdapter = ShimejiRecyclerViewAdapter(
             items = shimejiList,
             showBtnOptions = false,
-            onClickToDetails = { },
-            onClickToAllShimejis = { },
+            onDetailsClick = { },
+            onAllShimejisClick = { },
             onDeleteClick = { shimejiItem ->
                 Toast.makeText(
                     requireContext(),
@@ -75,10 +77,22 @@ class HomeScreenFragment : Fragment() {
     }
 
     private fun initializeGrid() {
+        val allShimejiActions = ShimejiActions.entries
+
         for (i in 0..5) {
-            shimejiList.add(ShimejiItem(i, ShimejiState.IsDownloaded(false), "", null))
+            shimejiList.add(ShimejiItem(
+                i,
+                ShimejiState.IsDownloaded(false, ShimejiDetails(allShimejiActions)),
+                "",
+                null
+            ))
         }
-        shimejiList[1] = ShimejiItem(1, ShimejiState.IsDownloaded(true), "Tanjiro", R.drawable.tanjiro)
+        shimejiList[1] = ShimejiItem(
+            1,
+            ShimejiState.IsDownloaded(true,  ShimejiDetails(allShimejiActions)),
+            "Tanjiro",
+            R.drawable.tanjiro
+        )
     }
 
     override fun onDestroyView() {

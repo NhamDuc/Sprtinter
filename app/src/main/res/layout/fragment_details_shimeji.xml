@@ -135,29 +135,31 @@
 
     <ImageView
         android:id="@+id/imgvShimeji"
-        android:layout_width="@dimen/_128sdp"
-        android:layout_height="@dimen/_128sdp"
-        android:layout_marginVertical="@dimen/_24sdp"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_marginVertical="@dimen/_16sdp"
+        android:minHeight="0dp"
         android:src="@drawable/tanjiro"
+        app:layout_constraintHorizontal_bias="0.3"
         app:layout_constraintBottom_toBottomOf="@id/cardViewDetails"
-        app:layout_constraintEnd_toStartOf="@+id/btnOptions"
+        app:layout_constraintEnd_toEndOf="@+id/cardViewDetails"
         app:layout_constraintStart_toStartOf="@id/cardViewDetails"
         app:layout_constraintTop_toBottomOf="@id/view" />
 
     <TextView
-        android:padding=""
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/bungee_regular"
         android:includeFontPadding="false"
+        android:padding="0dp"
         android:text="Tanjiro"
         android:textColor="@color/black"
         android:textFontWeight="400"
         android:textSize="@dimen/_18ssp"
-        app:layout_constraintBottom_toTopOf="@+id/btnOptions"
-        app:layout_constraintEnd_toEndOf="@+id/btnOptions"
-        app:layout_constraintStart_toStartOf="@+id/btnOptions"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintBottom_toBottomOf="@+id/imgvShimeji"
+        app:layout_constraintStart_toEndOf="@+id/imgvShimeji"
         app:layout_constraintTop_toTopOf="@+id/imgvShimeji" />
 
     <com.google.android.material.button.MaterialButton
@@ -165,16 +167,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
-        android:padding="0dp"
         android:fontFamily="@font/sf_compact_rounded_medium"
+        android:padding="0dp"
         android:text="Select"
         android:textColor="@color/black"
         android:textFontWeight="500"
         android:textSize="@dimen/_12ssp"
         app:cornerRadius="@dimen/_12sdp"
-        app:layout_constraintBottom_toBottomOf="@id/imgvShimeji"
-        app:layout_constraintEnd_toEndOf="@+id/cardViewDetails"
-        app:layout_constraintStart_toEndOf="@id/imgvShimeji"
-        app:layout_constraintTop_toTopOf="@+id/imgvShimeji" />
+        app:layout_constraintEnd_toEndOf="@+id/tvName"
+        app:layout_constraintStart_toStartOf="@id/tvName"
+        app:layout_constraintTop_toBottomOf="@id/tvName"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/detailsRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewDetails" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

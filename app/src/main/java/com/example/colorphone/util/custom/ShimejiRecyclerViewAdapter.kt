@@ -9,12 +9,13 @@ import com.example.colorphone.R
 import com.example.colorphone.databinding.ShimejiGridItemBinding
 import com.example.colorphone.model.ShimejiItem
 import com.example.colorphone.model.ShimejiState
+import kotlin.random.Random
 
 class ShimejiRecyclerViewAdapter(
     private val items: MutableList<ShimejiItem>,
     private val showBtnOptions: Boolean,
-    private val onClickToDetails: (ShimejiItem) -> Unit,
-    private val onClickToAllShimejis: () -> Unit,
+    private val onDetailsClick: (ShimejiItem) -> Unit,
+    private val onAllShimejisClick: () -> Unit,
     private val onDeleteClick: (ShimejiItem) -> Unit,
     private val onDownloadClick: (ShimejiItem) -> Unit,
 ) : RecyclerView.Adapter<ShimejiRecyclerViewAdapter.ShimejiRecyclerViewHolder>() {
@@ -37,11 +38,19 @@ class ShimejiRecyclerViewAdapter(
                 is ShimejiState.IsDownloaded -> {
                     val downloadState = item.state
 
+                    binding.selectedStateImage.visibility = View.VISIBLE
+                    binding.selectedStateText.visibility = View.VISIBLE
+                    item.iconResId?.let {
+                        binding.selectedStateImage.setImageResource(it)
+                    } ?: binding.selectedStateImage.setImageResource(R.drawable.loading)
+
+                    binding.root.setOnClickListener {
+                        onDetailsClick(item)
+                    }
+
                     if (downloadState.isSelected) {
-                        binding.selectedStateImage.visibility = View.VISIBLE
-                        binding.selectedStateText.visibility = View.VISIBLE
-                        binding.unselectedStateContainer.visibility = View.INVISIBLE
-                        if (showBtnOptions) {
+                        binding.unselectedStateContainer.visibility = View.GONE
+                        if (showBtnOptions) { // ALL SCREEN
                             binding.btnOptions.visibility = View.VISIBLE
                             binding.selectedStateDeleteBtn.visibility = View.GONE
                             binding.dotTopRight.visibility = View.VISIBLE
@@ -51,27 +60,22 @@ class ShimejiRecyclerViewAdapter(
                                 this.setBackgroundColor(Color.TRANSPARENT)
                                 this.setStrokeWidthResource(R.dimen.button_stroke_width)
                             }
-                        } else {
+                        } else { // HOME SCREEN
                             binding.btnOptions.visibility = View.GONE
                             binding.selectedStateDeleteBtn.visibility = View.VISIBLE
                             binding.dotTopRight.visibility = View.GONE
+
+                            binding.selectedStateDeleteBtn.setOnClickListener {
+                                onDeleteClick(item)
+                            }
                         }
 
-                        setImageFor(item)
                         binding.selectedStateText.text = item.name
-                        binding.selectedStateDeleteBtn.setOnClickListener {
-                            onDeleteClick(item)
-                        }
-                        binding.selectedStateImage.setOnClickListener {
-                            onToDetailsClick(item)
-                        }
                         binding.btnOptions.setOnClickListener {
                             downloadState.isSelected = false
                         }
                     } else {
-                        if (showBtnOptions) {
-                            binding.selectedStateImage.visibility = View.VISIBLE
-                            binding.selectedStateText.visibility = View.VISIBLE
+                        if (showBtnOptions) { // All Screen
                             binding.unselectedStateContainer.visibility = View.GONE
                             binding.selectedStateDeleteBtn.visibility = View.GONE
                             binding.btnOptions.visibility = View.VISIBLE
@@ -80,7 +84,7 @@ class ShimejiRecyclerViewAdapter(
                                 this.setText(R.string.select)
                                 this.setBackgroundColor(getResources().getColor(R. color. white))
                             }
-                        } else {
+                        } else { // HOME SCREEN
                             binding.selectedStateImage.visibility = View.GONE
                             binding.selectedStateText.visibility = View.GONE
                             binding.unselectedStateContainer.visibility = View.VISIBLE
@@ -101,7 +105,6 @@ class ShimejiRecyclerViewAdapter(
                 // TODO: Item Details is not downloaded
                 is ShimejiState.IsNotDownloaded -> {
                     binding.selectedStateImage.visibility = View.VISIBLE
-                    binding.selectedStateText.visibility = View.VISIBLE
                     binding.unselectedStateContainer.visibility = View.GONE
                     binding.selectedStateDeleteBtn.visibility = View.GONE
                     binding.btnOptions.visibility = View.VISIBLE
@@ -111,47 +114,17 @@ class ShimejiRecyclerViewAdapter(
                         this.setBackgroundColor(getResources().getColor(R. color. csk_500))
                         this.setStrokeWidthResource(R.dimen.button_stroke_width_none)
                     }
-                    setImageFor(item)
+                    item.iconResId?.let { resId ->
+                        binding.selectedStateImage.setImageResource(resId)
+                    } ?: run {
+                        binding.selectedStateImage.setImageResource(R.drawable.loading)
+                    }
+                    binding.selectedStateText.visibility = View.VISIBLE
                     binding.selectedStateText.text = item.name
                     binding.btnOptions.setOnClickListener {
                         onDownloadClick(item)
                     }
                 }
-            }
-        }
-
-        private fun turnVisibilityForShimejisGroup(on: Boolean, action: () -> Unit) {
-            if(on) {
-                binding.btnOptions.visibility = View.VISIBLE
-                binding.dotTopRight.visibility = View.GONE
-                binding.selectedStateDeleteBtn.visibility = View.GONE
-                binding.btnOptions.setOnClickListener {
-                    action()
-                }
-            } else {
-                binding.btnOptions.visibility = View.GONE
-                binding.selectedStateDeleteBtn.visibility = View.VISIBLE
-                binding.dotTopRight.visibility = View.VISIBLE
-            }
-        }
-        private fun changeVisibilityForSelectedGroup(visibility: Int) {
-            binding.selectedStateText.visibility = visibility
-            binding.selectedStateImage.visibility = visibility
-            binding.selectedStateDeleteBtn.visibility = visibility
-        }
-
-        private fun changeVisibilityForUnselectedGroup(visibility: Int) {
-            binding.unselectedStateContainer.visibility = visibility
-            binding.dotTopRight.visibility = visibility
-        }
-
-        private fun setImageFor(item: ShimejiItem) {
-            item.iconResId?.let { resID ->
-                binding.selectedStateImage.setImageResource(resID)
-                binding.selectedStateImage.visibility = View.VISIBLE
-            } ?: run {
-                binding.selectedStateImage.setImageResource(R.drawable.loading)
-                binding.selectedStateImage.visibility = View.VISIBLE
             }
         }
     }
@@ -177,8 +150,8 @@ class ShimejiRecyclerViewAdapter(
         holder.bind(
             item,
             showBtnOptions,
-            onClickToDetails,
-            onClickToAllShimejis,
+            onDetailsClick,
+            onAllShimejisClick,
             onDeleteClick,
             onDownloadClick
         )

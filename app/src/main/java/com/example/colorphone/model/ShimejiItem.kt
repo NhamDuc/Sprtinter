@@ -11,6 +11,6 @@ data class ShimejiItem(
 )
 
 sealed interface ShimejiState {
-    data class IsDownloaded(var isSelected: Boolean = false) : ShimejiState
+    data class IsDownloaded(var isSelected: Boolean = false, val details: ShimejiDetails) : ShimejiState
     object IsNotDownloaded : ShimejiState
 }
