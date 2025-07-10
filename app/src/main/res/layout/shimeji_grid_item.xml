@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/_96sdp"
     app:cardBackgroundColor="@color/csk_200"
-    app:cardCornerRadius="@dimen/_8sdp"
+    app:cardCornerRadius="@dimen/_10sdp"
     app:strokeColor="#FFFFFF"
     app:strokeWidth="@dimen/_1sdp">
 
