@@ -29,6 +29,7 @@ class ShimejiRecyclerViewAdapter(
         fun bind(
             item: ShimejiItem,
         ) {
+            val cardHeight: Int
             when (item.state) {
                 // TODO: Item Details is downloaded
                 is ShimejiState.IsDownloaded -> {
@@ -44,6 +45,8 @@ class ShimejiRecyclerViewAdapter(
                     if (downloadState.isSelected) {
                         binding.unselectedStateContainer.visibility = View.GONE
                         if (showBtnOptions) { // ALL SCREEN
+                            cardHeight = binding.root.context.resources.getDimensionPixelSize(R.dimen.higher_card)
+
                             binding.btnOptions.visibility = View.VISIBLE
                             binding.selectedStateDeleteBtn.visibility = View.GONE
                             binding.dotTopRight.visibility = View.VISIBLE
@@ -53,7 +56,11 @@ class ShimejiRecyclerViewAdapter(
                                 this.setBackgroundColor(Color.TRANSPARENT)
                                 this.setStrokeWidthResource(R.dimen.button_stroke_width)
                             }
+                            val layoutParams = binding.shimejiItemCardView.layoutParams
+                            layoutParams.height = R.dimen.button_stroke_width
                         } else { // HOME SCREEN
+                            cardHeight = binding.root.context.resources.getDimensionPixelSize(R.dimen.standard_card)
+
                             binding.btnOptions.visibility = View.GONE
                             binding.selectedStateDeleteBtn.visibility = View.VISIBLE
                             binding.dotTopRight.visibility = View.GONE
@@ -73,6 +80,8 @@ class ShimejiRecyclerViewAdapter(
                         }
                     } else {
                         if (showBtnOptions) { // All Screen
+                            cardHeight = binding.root.context.resources.getDimensionPixelSize(R.dimen.higher_card)
+
                             binding.unselectedStateContainer.visibility = View.GONE
                             binding.selectedStateDeleteBtn.visibility = View.GONE
                             binding.btnOptions.visibility = View.VISIBLE
@@ -82,6 +91,8 @@ class ShimejiRecyclerViewAdapter(
                                 this.setBackgroundColor(getResources().getColor(R. color. white))
                             }
                         } else { // HOME SCREEN
+                            cardHeight = binding.root.context.resources.getDimensionPixelSize(R.dimen.standard_card)
+
                             binding.selectedStateImage.visibility = View.GONE
                             binding.selectedStateText.visibility = View.GONE
                             binding.unselectedStateContainer.visibility = View.VISIBLE
@@ -104,6 +115,8 @@ class ShimejiRecyclerViewAdapter(
 
                 // TODO: Item Details is not downloaded
                 is ShimejiState.IsNotDownloaded -> {
+                    cardHeight = binding.root.context.resources.getDimensionPixelSize(R.dimen.higher_card)
+
                     binding.selectedStateImage.visibility = View.VISIBLE
                     binding.unselectedStateContainer.visibility = View.GONE
                     binding.selectedStateDeleteBtn.visibility = View.GONE
@@ -126,6 +139,10 @@ class ShimejiRecyclerViewAdapter(
                     }
                 }
             }
+
+            val layoutParams = binding.shimejiItemCardView.layoutParams
+            layoutParams.height = cardHeight
+            binding.shimejiItemCardView.layoutParams = layoutParams
         }
     }
 

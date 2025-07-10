@@ -4,16 +4,16 @@
     <item android:state_checked="true">
         <shape android:shape="rectangle">
             <solid android:color="#FFFFFF" />
-            <corners android:radius="@dimen/_32sdp" />
-            <size android:width="@dimen/_44sdp" android:height="@dimen/_24sdp" />
+            <corners android:radius="@dimen/_44sdp" />
+            <size android:width="@dimen/_44sdp" android:height="@dimen/_22sdp" />
         </shape>
     </item>
 
     <item android:state_checked="false">
         <shape android:shape="rectangle">
             <solid android:color="@color/csk_900" />
-            <corners android:radius="@dimen/_32sdp" />
-            <size android:width="@dimen/_44sdp" android:height="@dimen/_24sdp" />
+            <corners android:radius="@dimen/_44sdp" />
+            <size android:width="@dimen/_44sdp" android:height="@dimen/_22sdp" />
         </shape>
     </item>
 </selector>

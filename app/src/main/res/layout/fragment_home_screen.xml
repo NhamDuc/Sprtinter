@@ -148,13 +148,30 @@
         android:fontFamily="@font/sf_mono_regular"
         android:lineHeight="@dimen/_20sdp"
         android:maxLines="1"
-        android:text="@string/shimeji_on_screen"
+        android:text="Shimeji on screen: "
         android:textAllCaps="true"
         android:textFontWeight="400"
         android:textSize="@dimen/_12ssp"
-        app:layout_constraintEnd_toEndOf="@+id/checkButton"
         app:layout_constraintStart_toStartOf="@+id/turnOnText"
         app:layout_constraintTop_toBottomOf="@+id/turnOnText" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:fontFamily="@font/sf_mono_regular"
+        android:lineHeight="@dimen/_20sdp"
+        android:maxLines="1"
+        android:ellipsize="none"
+        android:text="--------------------------"
+        android:gravity="end"
+        android:textAllCaps="true"
+        android:textFontWeight="400"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintStart_toEndOf="@id/shimejiOnScreenText"
+        app:layout_constraintEnd_toEndOf="@+id/checkButton"
+        app:layout_constraintTop_toBottomOf="@id/turnOnText"/>
 
 
     <Switch
