@@ -10,15 +10,14 @@ import com.example.colorphone.model.ShimejiDetails
 
 class DetailsRecyclerViewAdapter(
     private val items: List<ShimejiActions>,
-    private val onShimejiActionClick: (ShimejiActions) -> Unit
+    private val onClick: (ShimejiActions) -> Unit
 ) : RecyclerView.Adapter<DetailsRecyclerViewAdapter.DetailsRecyclerViewHolder>() {
 
     inner class DetailsRecyclerViewHolder(
         private val binding: DetailsGridItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            action: ShimejiActions,
-            onClick: (ShimejiActions) -> Unit
+            action: ShimejiActions
         ) {
             binding.tvAction.text = action.name
             binding.imgbtnAction.setImageResource(getActionDrawableRes(action))
@@ -55,8 +54,7 @@ class DetailsRecyclerViewAdapter(
     ) {
         val action = items[position]
         holder.bind(
-            action,
-            onShimejiActionClick
+            action
         )
     }
 

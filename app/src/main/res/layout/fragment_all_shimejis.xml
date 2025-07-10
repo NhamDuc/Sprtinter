@@ -23,11 +23,11 @@
 
     <ImageView
         android:id="@+id/imgvHome"
-        android:layout_width="@dimen/_180sdp"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/_32sdp"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_32sdp"
-        android:scaleType="fitCenter"
+        android:scaleType="fitStart"
         android:src="@drawable/home_text"
         app:layout_constraintStart_toEndOf="@id/btnBack"
         app:layout_constraintTop_toTopOf="parent" />

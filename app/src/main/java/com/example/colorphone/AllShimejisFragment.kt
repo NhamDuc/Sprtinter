@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.colorphone.databinding.FragmentAllShimejisBinding
 import com.example.colorphone.model.ShimejiActions
@@ -37,16 +38,33 @@ class AllShimejisFragment : Fragment() {
         setupRecylerView()
         // TODO: Fake data
         initializeGrid()
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun setupRecylerView() {
         shimejiGridAdapter = ShimejiRecyclerViewAdapter(
             items = shimejiList,
             showBtnOptions = true,
-            onDetailsClick = { },
-            onAllShimejisClick = { },
+            onDetailsClick = {
+                val action =
+                    AllShimejisFragmentDirections.actionAllShimejisFragmentToDetailsShimejiFragment(
+                        it
+                    )
+                findNavController().navigate(action)
+            },
+            onAllShimejisClick = {
+                // Nothing
+            },
             onDeleteClick = { },
-            onDownloadClick = { },
+            onDownloadClick = {
+                // TODO:
+            },
+            onOptionsSelected = { item, boolean ->
+
+            },
         )
 
         binding.recyclerView2.apply {
@@ -56,21 +74,27 @@ class AllShimejisFragment : Fragment() {
     }
 
     private fun initializeGrid() {
+        shimejiList.clear()
         val allShimejiActions = ShimejiActions.entries
 
-        for (i in 0..30) {
+        for (i in 0..15) {
             shimejiList.add(ShimejiItem(
                 i, ShimejiState.IsNotDownloaded, "Vegeta", R.drawable.vegeta
             ))
         }
+        for (i in 0..15) {
+            shimejiList.add(ShimejiItem(
+                i, ShimejiState.IsNotDownloaded, "Doggo", null
+            ))
+        }
         shimejiList[1] = ShimejiItem(
-            1,
+            null,
             ShimejiState.IsDownloaded(true,details = ShimejiDetails(allShimejiActions)),
             "Tanjiro",
             R.drawable.tanjiro
         )
         shimejiList[2] = ShimejiItem(
-            2,
+            null,
             ShimejiState.IsNotDownloaded, "Doggo", R.drawable.doggo
         )
         shimejiList[3] = ShimejiItem(

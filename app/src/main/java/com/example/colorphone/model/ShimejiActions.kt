@@ -1,6 +1,10 @@
 package com.example.colorphone.model
 
-enum class ShimejiActions {
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+enum class ShimejiActions : Parcelable {
     JUMP,
     DRAG,
     SIT,

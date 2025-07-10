@@ -9,20 +9,13 @@
     tools:context=".DownloadingScreenFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/tvAppName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_128sdp"
-        android:fontFamily="@font/bungee_regular"
-        android:outlineProvider="none"
-        android:shadowColor="#312E2F"
-        android:shadowRadius="8"
-        android:shadowDy="4.0"
-        android:shadowDx="4.0"
-        android:text="@string/shimeji"
-        android:textColor="#FFF4F9"
-        android:textFontWeight="400"
-        android:textSize="@dimen/_48ssp"
+        android:src="@drawable/home_text"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -18,7 +18,7 @@
         android:layout_height="@dimen/_20sdp"
         android:background="@null"
         android:contentDescription="back button"
-        android:scaleType="fitCenter"
+        android:scaleType="fitStart"
         android:src="@drawable/back"
         tools:layout_editor_absoluteX="10dp"
         tools:layout_editor_absoluteY="10dp" />
@@ -29,9 +29,9 @@
         app:layout_constraintStart_toEndOf="@+id/btnBack"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginTop="@dimen/_32sdp"
-        android:layout_width="@dimen/_180sdp"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/_32sdp"
-        android:scaleType="fitCenter"
+        android:scaleType="fitStart"
         android:src="@drawable/details_text"
         tools:layout_editor_absoluteX="10dp"
         tools:layout_editor_absoluteY="10dp" />

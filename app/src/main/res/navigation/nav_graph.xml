@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/detailsShimejiFragment">
+    app:startDestination="@id/downloadingScreenFragment">
 
 
     <fragment
@@ -29,6 +29,13 @@
         <action
             android:id="@+id/action_homeScreenFragment_to_allShimejisFragment"
             app:destination="@id/allShimejisFragment" />
+        <action
+            android:id="@+id/action_homeScreenFragment_to_detailsShimejiFragment"
+            app:destination="@id/detailsShimejiFragment">
+            <argument
+                android:name="shimejiItem"
+                app:argType="com.example.colorphone.model.ShimejiItem" />
+        </action>
     </fragment>
     <navigation android:id="@+id/navigation"
         app:startDestination="@id/customerFragment">
@@ -64,7 +71,11 @@
         tools:layout="@layout/fragment_settings_screen" >
         <action
             android:id="@+id/action_settingsScreenFragment_to_homeScreenFragment"
-            app:destination="@id/homeScreenFragment" />
+            app:destination="@id/homeScreenFragment"
+            app:popUpTo="@id/homeScreenFragment"
+            app:popUpToInclusive="false"
+            app:launchSingleTop="true"
+            app:restoreState="true"/>
     </fragment>
     <fragment
         android:id="@+id/allShimejisFragment"
@@ -73,18 +84,37 @@
         tools:layout="@layout/fragment_all_shimejis" >
         <action
             android:id="@+id/action_allShimejisFragment_to_homeScreenFragment"
-            app:destination="@id/homeScreenFragment" />
+            app:destination="@id/homeScreenFragment"
+            app:popUpTo="@id/homeScreenFragment"
+            app:popUpToInclusive="false"
+            app:launchSingleTop="true"/>
         <action
             android:id="@+id/action_allShimejisFragment_to_detailsShimejiFragment"
-            app:destination="@id/detailsShimejiFragment" />
+            app:destination="@id/detailsShimejiFragment">
+            <argument
+                android:name="shimejiItem"
+                app:argType="com.example.colorphone.model.ShimejiItem" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/detailsShimejiFragment"
         android:name="com.example.colorphone.DetailsShimejiFragment"
         android:label="fragment_details_shimeji"
         tools:layout="@layout/fragment_details_shimeji" >
+        <argument
+            android:name="shimejiItem"
+            app:argType="com.example.colorphone.model.ShimejiItem" />
         <action
             android:id="@+id/action_detailsShimejiFragment_to_allShimejisFragment"
-            app:destination="@id/allShimejisFragment" />
+            app:destination="@id/allShimejisFragment"
+            app:popUpTo="@id/allShimejisFragment"
+            app:popUpToInclusive="false"
+            app:launchSingleTop="true"/>
+        <action
+            android:id="@+id/action_detailsShimejiFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment"
+            app:popUpTo="@id/homeScreenFragment"
+            app:popUpToInclusive="false"
+            app:launchSingleTop="true"/>
     </fragment>
 </navigation>

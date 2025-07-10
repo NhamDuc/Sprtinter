@@ -2,6 +2,7 @@ package com.example.colorphone.util.custom
 
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +16,7 @@ import com.example.colorphone.R
 class CustomDropDownAdapter(
     context: Context,
     private val layoutResId: Int,
-    private val items: List<String>,
+    private val items: Array<String>,
     private val autoCompleteTextView: AutoCompleteTextView
 ): ArrayAdapter<String>(context, layoutResId, items) {
 
@@ -41,6 +42,11 @@ class CustomDropDownAdapter(
         }
 
         return view
+    }
 
+    override fun getCount(): Int {
+        val count = super.getCount()
+        Log.d("DropDownDebug", "CustomDropDownAdapter: getCount() returning = ${count}") // <--- Add this
+        return count
     }
 }

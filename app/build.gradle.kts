@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -62,7 +64,7 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:$glide_version")
     ksp("com.github.bumptech.glide:ksp:$glide_version")
     //TODO: Navigation component
-    val nav_version = "2.7.5"
+    val nav_version = "2.7.7"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
     //TODO:ViewModel + LiveData + Corountine

@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.colorphone.databinding.FragmentDetailsShimejiBinding
 import com.example.colorphone.databinding.FragmentHomeScreenBinding
@@ -19,6 +21,7 @@ class DetailsShimejiFragment : Fragment() {
     private var _binding: FragmentDetailsShimejiBinding ?= null
     private val binding get() = _binding!!
 
+    private val args: DetailsShimejiFragmentArgs by navArgs()
     private lateinit var detailsGridAdapter: DetailsRecyclerViewAdapter
 
 
@@ -34,20 +37,28 @@ class DetailsShimejiFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        detailsGridAdapter = ShimejiItem(
-            1,
-            ShimejiState.IsDownloaded(true, ShimejiDetails(ShimejiActions.entries)),
-            "tanjiro",
-            R.drawable.tanjiro
-        ).run {
-            val downloadedState = this.state as ShimejiState.IsDownloaded
-            val actionsList = downloadedState.details.shimejiActions
-            return@run DetailsRecyclerViewAdapter(
-                items = actionsList,
-                onShimejiActionClick = {}
-            )
+        val selectedShimejiItem: ShimejiItem = args.shimejiItem
+
+        binding.tvName.text = selectedShimejiItem.name
+        selectedShimejiItem.iconResId?.let {
+            binding.imgvShimeji.setImageResource(it)
+        } ?: binding.imgvShimeji.setImageResource(R.drawable.loading)
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
         }
 
+        if (selectedShimejiItem.state is ShimejiState.IsDownloaded) {
+            val downloadedState = selectedShimejiItem.state
+            val actionsList = downloadedState.details.shimejiActions
+
+            detailsGridAdapter = DetailsRecyclerViewAdapter(
+                items = actionsList,
+                onClick = {
+
+                },
+            )
+        }
 
         binding.detailsRecyclerView.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)

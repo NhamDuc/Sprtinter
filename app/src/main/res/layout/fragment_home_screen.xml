@@ -8,22 +8,13 @@
     android:padding="@dimen/_8sdp"
     tools:context=".HomeScreenFragment">
 
-    <TextView
-        android:id="@+id/tvAdjustTitle"
+    <ImageView
+        android:id="@+id/imgvHome"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:fontFamily="@font/bungee_regular"
-        android:includeFontPadding="false"
-        android:shadowColor="#312E2F"
-        android:shadowDx="3"
-        android:shadowDy="3"
-        android:shadowRadius="8"
-        android:text="@string/home"
-        android:textAllCaps="true"
-        android:textColor="#FFF4F9"
-        android:textFontWeight="400"
-        android:textSize="@dimen/_40ssp"
+        android:layout_height="@dimen/_32sdp"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:scaleType="fitStart"
+        android:src="@drawable/home_screen_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,9 +26,9 @@
         android:contentDescription="@string/settings_button"
         android:scaleType="centerInside"
         android:src="@drawable/settings"
-        app:layout_constraintBottom_toBottomOf="@+id/tvAdjustTitle"
+        app:layout_constraintBottom_toBottomOf="@+id/imgvHome"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvAdjustTitle" />
+        app:layout_constraintTop_toTopOf="@+id/imgvHome" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
@@ -46,11 +37,11 @@
         android:layout_marginTop="@dimen/_16sdp"
         app:cardBackgroundColor="@color/csk_200"
         app:cardCornerRadius="@dimen/_16sdp"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="@+id/btnAdjust"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvAdjustTitle"
+        app:layout_constraintTop_toBottomOf="@id/imgvHome"
         app:layout_constraintVertical_bias="0.0"
         app:strokeColor="@color/black"
         app:strokeWidth="@dimen/_1sdp" />
@@ -218,7 +209,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
+        android:id="@+id/btnAdjust"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_8sdp"
@@ -256,7 +247,7 @@
         app:icon="@drawable/vision_vector"
         app:iconGravity="textStart"
         app:iconPadding="@dimen/_8sdp"
-        app:iconSize="@dimen/_18sdp"
+        app:iconSize="@dimen/_16sdp"
         app:iconTint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

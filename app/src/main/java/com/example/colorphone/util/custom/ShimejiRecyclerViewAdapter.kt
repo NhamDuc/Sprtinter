@@ -18,6 +18,7 @@ class ShimejiRecyclerViewAdapter(
     private val onAllShimejisClick: () -> Unit,
     private val onDeleteClick: (ShimejiItem) -> Unit,
     private val onDownloadClick: (ShimejiItem) -> Unit,
+    private val onOptionsSelected: (ShimejiItem, Boolean) -> Unit
 ) : RecyclerView.Adapter<ShimejiRecyclerViewAdapter.ShimejiRecyclerViewHolder>() {
 
     // Inner class to hold references to the views for each item
@@ -27,11 +28,6 @@ class ShimejiRecyclerViewAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(
             item: ShimejiItem,
-            showBtnOptions: Boolean,
-            onToDetailsClick: (ShimejiItem) -> Unit,
-            onToAllShimejisClick: () -> Unit,
-            onDeleteClick: (ShimejiItem) -> Unit,
-            onDownloadClick: (ShimejiItem) -> Unit
         ) {
             when (item.state) {
                 // TODO: Item Details is downloaded
@@ -44,9 +40,6 @@ class ShimejiRecyclerViewAdapter(
                         binding.selectedStateImage.setImageResource(it)
                     } ?: binding.selectedStateImage.setImageResource(R.drawable.loading)
 
-                    binding.root.setOnClickListener {
-                        onDetailsClick(item)
-                    }
 
                     if (downloadState.isSelected) {
                         binding.unselectedStateContainer.visibility = View.GONE
@@ -70,9 +63,13 @@ class ShimejiRecyclerViewAdapter(
                             }
                         }
 
+                        binding.selectedStateImage.setOnClickListener {
+                            onDetailsClick(item)
+                        }
+
                         binding.selectedStateText.text = item.name
                         binding.btnOptions.setOnClickListener {
-                            downloadState.isSelected = false
+                            onOptionsSelected(item, false)
                         }
                     } else {
                         if (showBtnOptions) { // All Screen
@@ -94,10 +91,13 @@ class ShimejiRecyclerViewAdapter(
                         }
                         binding.selectedStateText.text = item.name
                         binding.unselectedStateContainer.setOnClickListener {
-                            onToAllShimejisClick()
+                            onAllShimejisClick()
+                        }
+                        binding.selectedStateImage.setOnClickListener {
+                            onDetailsClick(item)
                         }
                         binding.btnOptions.setOnClickListener {
-                            downloadState.isSelected = true
+                            onOptionsSelected(item, true)
                         }
                     }
                 }
@@ -148,33 +148,11 @@ class ShimejiRecyclerViewAdapter(
     ) {
         val item = items[position]
         holder.bind(
-            item,
-            showBtnOptions,
-            onDetailsClick,
-            onAllShimejisClick,
-            onDeleteClick,
-            onDownloadClick
+            item
         )
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
-
-    fun updateItem(item: ShimejiItem) {
-
-    }
-
-    fun removeItem(item: ShimejiItem) {
-        val index = items.indexOfFirst { it.id == item.id }
-        if (index != -1) {
-            items[index].copy(
-                name = "",
-                iconResId = null
-            )
-            notifyItemRemoved(index)
-        }
-    }
-
-
 }

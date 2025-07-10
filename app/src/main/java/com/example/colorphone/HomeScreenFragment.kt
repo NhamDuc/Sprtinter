@@ -1,12 +1,14 @@
 package com.example.colorphone
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.colorphone.databinding.FragmentHomeScreenBinding
 import com.example.colorphone.model.ShimejiActions
@@ -39,32 +41,69 @@ class HomeScreenFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val autoCompleteTextView = view.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextView)
-
-        val randomItem = resources.getStringArray(R.array.random).toList()
-        val arrayAdapter = CustomDropDownAdapter(requireContext(), R.layout.dropdown_random_item, randomItem, autoCompleteTextView)
-        autoCompleteTextView.setAdapter(arrayAdapter)
-
         setupRecyclerView()
         // TODO: Fake data
         initializeGrid()
+
+        binding.settingsButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeScreenFragment_to_settingsScreenFragment)
+        }
+        binding.btnAdjust.setOnClickListener {
+            findNavController().navigate(R.id.action_homeScreenFragment_to_adjustScreenFragment)
+        }
+        binding.btnViewAllShimeji.setOnClickListener {
+            findNavController().navigate(R.id.action_homeScreenFragment_to_allShimejisFragment)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val autoCompleteTextView = binding.autoCompleteTextView
+        val randomItem = resources.getStringArray(R.array.random)
+        val arrayAdapter = CustomDropDownAdapter(requireContext(), R.layout.dropdown_random_item, randomItem, autoCompleteTextView)
+        autoCompleteTextView.setAdapter(arrayAdapter)
     }
 
     private fun setupRecyclerView() {
         shimejiGridAdapter = ShimejiRecyclerViewAdapter(
             items = shimejiList,
             showBtnOptions = false,
-            onDetailsClick = { },
-            onAllShimejisClick = { },
+            onDetailsClick = {
+                val action =
+                    HomeScreenFragmentDirections.actionHomeScreenFragmentToDetailsShimejiFragment(it)
+                findNavController().navigate(action)
+            },
+            onAllShimejisClick = {
+                findNavController().navigate(R.id.action_homeScreenFragment_to_allShimejisFragment)
+            },
             onDeleteClick = { shimejiItem ->
                 Toast.makeText(
                     requireContext(),
                     "A Shimeji has made an ultimate sacrifice",
                     Toast.LENGTH_LONG
                 ).show()
-                shimejiGridAdapter.removeItem(shimejiItem)
+                val pos = shimejiList.indexOf(shimejiItem)
+                val allShimejiActions = ShimejiActions.entries
+                if (pos != -1) {
+                    shimejiList.removeAt(pos)
+                    shimejiList.add(
+                        ShimejiItem(
+                            null,
+                            ShimejiState.IsDownloaded(false, ShimejiDetails(allShimejiActions)),
+                            "",
+                            null
+                        )
+                    )
+                    shimejiGridAdapter.notifyItemChanged(pos)
+                }
             },
-            onDownloadClick = { },
+            onDownloadClick = {
+
+            },
+            onOptionsSelected = { item, boolean ->
+
+            },
         )
 
         binding.gridRecyclerView.apply {
@@ -77,11 +116,12 @@ class HomeScreenFragment : Fragment() {
     }
 
     private fun initializeGrid() {
+        shimejiList.clear()
         val allShimejiActions = ShimejiActions.entries
 
         for (i in 0..5) {
             shimejiList.add(ShimejiItem(
-                i,
+                null,
                 ShimejiState.IsDownloaded(false, ShimejiDetails(allShimejiActions)),
                 "",
                 null
