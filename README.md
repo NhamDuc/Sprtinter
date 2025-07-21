@@ -1,2 +1,3 @@
 # Sprinter
-A running tracking app with weather forescast API meteo
+Understand XML in Android
+
